@@ -8,12 +8,13 @@ function App() {
       .then((res) => res.json())
       .then((json) => {
         let randomSolution = json[Math.floor(Math.random() * json.length)];
-        setSolution(randomSolution);
+        setSolution(randomSolution.word);
       });
-  }, []);
+  }, [setSolution]);
   return (
     <div className="App">
       <h1>Wordle (Lingo)</h1>
+      {solution && <div> Solution is : {solution}</div>}
     </div>
   );
 }
