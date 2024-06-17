@@ -12,7 +12,32 @@ const useWordle = (solution) => {
   // e.g. [{key: 'a', color: 'yellow'}]
 
   const formatGuess = () => {
-    console.log("formatting the guess -", currentGuess);
+    // spread the solution into an array of chars
+    // spread and then map into a new array the keys and colors
+    let solutionArray = [...solution];
+    let formattedGuess = [...currentGuess].map((l) => {
+      return { key: l, color: "grey" };
+    });
+    // console.log("solutionArray", solutionArray);
+    // console.log("formattedGuess", formattedGuess);
+    // find the green letter: for each letter and index
+    // set matches to null to avoid recoloring during the for each callback
+    formattedGuess.forEach((l, i) => {
+      if (solutionArray[i] === l.key) {
+        formattedGuess[i].color = "green";
+        solutionArray[i] = null;
+      }
+    });
+
+    //find yellow letters
+    formattedGuess.forEach((l, i) => {
+      if (solutionArray.includes(l.key) && l.color !== "green") {
+        formattedGuess[i].color = "yellow";
+        solutionArray[solutionArray.indexOf(l.key)] = null;
+      }
+    });
+
+    return formattedGuess;
   };
   // add a new guess to the guesses state
   //update the isCorrect state if the guess is correct
@@ -38,7 +63,8 @@ const useWordle = (solution) => {
         console.log("5 is the magic number");
         return;
       }
-      formatGuess();
+      const formatted = formatGuess();
+      console.log("formatted", formatted);
     }
     if (key === "Backspace") {
       SetCurrentGuess((prev) => {
