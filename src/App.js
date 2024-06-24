@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Wordle from "./components/Wordle";
 import { Canvas } from "./components/Canvas";
+import Animation from "./components/Animation";
 function App() {
   const [solution, setSolution] = useState(null);
   useEffect(() => {
@@ -17,6 +18,7 @@ function App() {
       <h1>Wordle (Lingo)</h1>
 
       {solution && <Wordle solution={solution} />}
+      <Animation />
     </div>
   );
 }
