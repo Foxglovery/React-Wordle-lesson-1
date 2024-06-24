@@ -3,6 +3,7 @@ import useWordle from "../hooks/useWordle";
 import Grid from "./Grid";
 import { Keypad } from "./Keypad";
 import Modal from "./Modal";
+import { Canvas } from "./Canvas";
 
 export default function Wordle({ solution }) {
   const { currentGuess, handleKeyup, guesses, isCorrect, turn, usedKeys } =
@@ -31,6 +32,7 @@ export default function Wordle({ solution }) {
       <div>Current Guess - {currentGuess}</div>
       <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
       <Keypad usedKeys={usedKeys} />
+
       {showModal && (
         <Modal isCorrect={isCorrect} turn={turn} solution={solution} />
       )}

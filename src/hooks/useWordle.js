@@ -115,6 +115,7 @@ const useWordle = (solution) => {
       });
       return;
     }
+    //regex is used here like witchcraft
     if (/^[A-Za-z]$/.test(key)) {
       if (currentGuess.length < 5) {
         SetCurrentGuess((prev) => {
