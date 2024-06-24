@@ -61,4 +61,10 @@ game process:
     -- when the user runs out of guesses
       -- modal to say 'unlucky'
 
+      features to add
+      -Canvas
+        -how to set canvas dimensions to entire wordle page?
+        -what sprite will we use?
+        
+
 */
