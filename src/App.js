@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Wordle from "./components/Wordle";
 import { Canvas } from "./components/Canvas";
 import Animation from "./components/Animation";
+import Canvas2 from "./components/Canvas2/Canvas2";
 function App() {
   const [solution, setSolution] = useState(null);
   useEffect(() => {
@@ -13,12 +14,21 @@ function App() {
         setSolution(randomSolution.word);
       });
   }, [setSolution]);
+
+  const draw = (context, count) => {
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+    context.fillStyle = "grey";
+    const delta = count % 800;
+    context.fillRect(10 + delta, 10, 100, 100);
+  };
+
   return (
     <div className="App">
       <h1>Wordle (Lingo)</h1>
 
       {solution && <Wordle solution={solution} />}
-      <Animation />
+      <Canvas2 draw={draw} width="800" height="500" />
+      {/* <Animation />  can go here */}
     </div>
   );
 }
